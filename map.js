@@ -1,7 +1,8 @@
 	var config = {
 		z: 13,
 		x: 56.0,
-		y: 37.0
+		y: 37.0,
+		opacity: 0.6
 	};
 
 	var Mercator = L.TileLayer.extend({
@@ -51,7 +52,7 @@
 	};
 	
 	var mymap = L.map('mapid').setView([config.x, config.y], config.z);
-
+	mymap.locate({setView: true, maxZoom: 18});
 	var baseLayers = {
 		"Google (спутник)": L.tileLayer('https://khms2.google.com/kh/v=862?z={z}&x={x}&y={y}', {
 					maxZoom: 18,
@@ -74,13 +75,28 @@
 			}).addTo(mymap)
 	};
 	var overlays = {
-		// "Marker": marker,
-		// "Roads": roadsLayer
+		"Зоны охраны природных объектов": L.tileLayer.wms("https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export", {
+			layers: 'show:3',
+			format: 'PNG32',
+			transparent: true,
+			f: 'image',
+			dpi: 96,
+			imageSR: 102100,
+			size: '1024,1024',
+			opacity: config.opacity,
+			attribution: "© Зоны охраны природных объектов"
+		}).addTo(mymap)
 	};
 	L.control.layers(baseLayers, overlays).addTo(mymap);
 
 
 /*
+https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export?layers=show%3A3&dpi=96&format=PNG32&bbox=4163066.3091636226%2C7514065.628213804%2C4167958.278974004%2C7518957.598024186&bboxSR=102100&imageSR=102100&size=1024%2C1024&transparent=true&f=image
+
+https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export?layers=show%3A3&format=PNG32&transparent=true&f=image&dpi=96&imageSR=102100&size=1024%2C1024&width=256&height=256&srs=EPSG%3A3857&bbox=4114146.6104213274,7553201.387027983,4119038.5802315786,7558093.356838226
+
+https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export?service=WMS&request=GetMap&layers=show%253A3&styles=&format=PNG32&transparent=true&version=1.1.1&f=image&dpi=9&imageSR=102100&size=1024%252C1024&width=256&height=256&srs=EPSG%3A3857&bbox=4114146.6104213274,7553201.387027983,4119038.5802315786,7558093.356838226
+
 http://tilessputnik.ru/18/158454/81968.png
 https://khms2.google.com/kh/v=862?x=153&y=81&z=8
 	L.marker([51.5, -0.09]).addTo(mymap)
