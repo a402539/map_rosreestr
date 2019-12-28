@@ -64,7 +64,7 @@
 					attribution: 'sputnik.ru &copy; <a href="http://tilessputnik.ru/">sputnik.ru</a>'
 			}),
 
-		"Яндекс (спутник)": L.tileLayer.Mercator('https://khms2.google.com/kh/v=862?z={z}&x={x}&y={y}', {
+		"Яндекс (спутник)": L.tileLayer.Mercator('https://sat04.maps.yandex.net/tiles?l=sat&v=3.462.0&x={x}&y={y}&z={z}&lang=ru_RU', {
 					maxZoom: 18,
 					attribution: 'Google &copy; <a href="https://www.google.ru/maps/">Google Map</a>'
 			}),
@@ -91,6 +91,9 @@
 
 
 /*
+
+https://sat04.maps.yandex.net/tiles?l=sat&v=3.462.0&x={x}&y={y}&z={z}&lang=ru_RU
+
 https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export?layers=show%3A3&dpi=96&format=PNG32&bbox=4163066.3091636226%2C7514065.628213804%2C4167958.278974004%2C7518957.598024186&bboxSR=102100&imageSR=102100&size=1024%2C1024&transparent=true&f=image
 
 https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export?layers=show%3A3&format=PNG32&transparent=true&f=image&dpi=96&imageSR=102100&size=1024%2C1024&width=256&height=256&srs=EPSG%3A3857&bbox=4114146.6104213274,7553201.387027983,4119038.5802315786,7558093.356838226
