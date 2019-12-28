@@ -66,7 +66,7 @@
 
 		"Яндекс (спутник)": L.tileLayer.Mercator('https://sat04.maps.yandex.net/tiles?l=sat&v=3.462.0&x={x}&y={y}&z={z}&lang=ru_RU', {
 					maxZoom: 18,
-					attribution: 'Google &copy; <a href="https://www.google.ru/maps/">Google Map</a>'
+					attribution: 'Яндекс (спутник) &copy; <a href="https://maps.yandex.net/maps/">Яндекс (спутник)</a>'
 			}),
 
 		"Яндекс карта": L.tileLayer.Mercator('https://vec01.maps.yandex.net/tiles?l=map&v=18.01.10-2&x={x}&y={y}&z={z}&scale=1&lang=ru_RU', {
