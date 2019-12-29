@@ -54,25 +54,22 @@
 	var mymap = L.map('mapid').setView([config.x, config.y], config.z);
 	mymap.locate({setView: true, maxZoom: 18});
 	var baseLayers = {
-		"Google (спутник)": L.tileLayer('https://khms2.google.com/kh/v=862?z={z}&x={x}&y={y}', {
+		"Яндекс карта": L.tileLayer.Mercator('https://vec01.maps.yandex.net/tiles?l=map&v=18.01.10-2&x={x}&y={y}&z={z}&scale=1&lang=ru_RU', {
 					maxZoom: 18,
-					attribution: 'Google &copy; <a href="https://www.google.ru/maps/">Google Map</a>'
-			}),
-
-		"Карта": L.tileLayer('http://tilessputnik.ru/{z}/{x}/{y}.png', {
-					maxZoom: 18,
-					attribution: 'sputnik.ru &copy; <a href="http://tilessputnik.ru/">sputnik.ru</a>'
-			}),
-
+					attribution: '&copy; <a href="https://n.maps.yandex.ru/?oid=1900133#!/?z=18&ll=36.860478%2C55.429679&l=nk%23map">Yandex</a> contributors'
+			}).addTo(mymap),
 		"Яндекс (спутник)": L.tileLayer.Mercator('https://sat04.maps.yandex.net/tiles?l=sat&v=3.462.0&x={x}&y={y}&z={z}&lang=ru_RU', {
 					maxZoom: 18,
 					attribution: 'Яндекс (спутник) &copy; <a href="https://maps.yandex.net/maps/">Яндекс (спутник)</a>'
 			}),
-
-		"Яндекс карта": L.tileLayer.Mercator('https://vec01.maps.yandex.net/tiles?l=map&v=18.01.10-2&x={x}&y={y}&z={z}&scale=1&lang=ru_RU', {
+		"Карта": L.tileLayer('http://tilessputnik.ru/{z}/{x}/{y}.png', {
 					maxZoom: 18,
-					attribution: '&copy; <a href="https://n.maps.yandex.ru/?oid=1900133#!/?z=18&ll=36.860478%2C55.429679&l=nk%23map">Yandex</a> contributors'
-			}).addTo(mymap)
+					attribution: 'sputnik.ru &copy; <a href="http://tilessputnik.ru/">sputnik.ru</a>'
+			}),
+		"Google (спутник)": L.tileLayer('https://khms2.google.com/kh/v=862?z={z}&x={x}&y={y}', {
+					maxZoom: 18,
+					attribution: 'Google &copy; <a href="https://www.google.ru/maps/">Google Map</a>'
+			})
 	};
 	var overlays = {
 		"Зоны охраны природных объектов": L.tileLayer.wms("https://pkk5.rosreestr.ru/arcgis/rest/services/Cadastre/ZONES/MapServer/export", {
@@ -89,6 +86,9 @@
 	};
 	L.control.layers(baseLayers, overlays).addTo(mymap);
 
+	var osmGeocoder = new L.Control.OSMGeocoder({placeholder: 'Поиск по населенному пункту', text: 'Найти'});
+
+	mymap.addControl(osmGeocoder);
 
 /*
 
